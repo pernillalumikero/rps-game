@@ -1,13 +1,15 @@
 import React from 'react'
 
-const Button = ({name, setUserChoise}) => {
+const Button = ({value, name, setUserChoise, computerChoise }) => {
 
     const handleClick = (e) => {
-        setUserChoise(e.target.value);
+        let value = parseInt(e.target.value)
+        setUserChoise(value);
+        computerChoise()
     }
 
   return (
-    <button value={name} onClick={handleClick}>{name}</button>
+    <button value={value} onClick={handleClick}>{name}</button>
   )
 }
 
