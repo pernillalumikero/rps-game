@@ -16,5 +16,5 @@ const compareChoices = ( {user, computer} ) => {
 
   }  
 
-export compareChoices
+export default compareChoices
 
