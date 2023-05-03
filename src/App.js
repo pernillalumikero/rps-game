@@ -10,14 +10,12 @@ function App() {
 
   const makeComputerChoise = () => {
       setComputerChoise(parseInt(Math.floor((Math.random() * 3) + 1)))
-      // console.log(typeof(userChoise))
-      // console.log(typeof(computerChoise))
-      // console.log(userChoise)
-      // console.log(computerChoise)
+
   }
  
   return (
     <div className="App">
+      <h1>ROCK PAPER SCISSOR</h1>
       <Button name="Sax" value={1} setUserChoise={setUserChoise} computerChoise={makeComputerChoise} /><Button name="Sten" value={2} setUserChoise={setUserChoise} computerChoise={makeComputerChoise}/><Button name="Papper" setUserChoise={setUserChoise} value={3} computerChoise={makeComputerChoise}/>
       {userChoise !== 0 
       ? <Result userChoise={userChoise} computerChoise={computerChoise} /> 
