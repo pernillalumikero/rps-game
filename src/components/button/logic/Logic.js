@@ -23,8 +23,8 @@
 import React from 'react'
 
 const Logic = ({user, computer}) => {
-  const user2 = user
-  const computer2 = computer
+  // const user2 = user
+  // const computer2 = computer
 
   const compareChoices = (user2, computer2) => {
 
@@ -34,7 +34,7 @@ const Logic = ({user, computer}) => {
 
     if(computer2 === user2) {
       result = "Oavgjort!"
-    } else if ((computer2 === 2 && user2 === 3) || (computer2 === 3 && user2 === 1) || (computer2 === 3 && user2 === 2)) {
+    } else if ((computer2 === 2 && user2 === 3) || (computer2 === 3 && user2 === 1) || (computer2 === 1 && user2 === 2)) {
       result="Du har vunnit!"
     } else {
       result = "Du har förlorat!"

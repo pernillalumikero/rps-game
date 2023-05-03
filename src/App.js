@@ -10,13 +10,15 @@ function App() {
 
   const makeComputerChoice = () => {
       setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
-
   }
  
   return (
     <div className="App">
-      <h1>ROCK PAPER SCISSOR</h1>
-      <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} /><Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/><Button name="Papper" setUserChoice={setUserChoice} value={3} computerChoice={makeComputerChoice}/>
+      <h1>Sten-Sax-Påse</h1>
+      <p>Gör ditt val:</p>
+      <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} />
+      <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
+      <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
       {userChoice !== 0 
       ? <Result userChoice={userChoice} computerChoice={computerChoice} /> 
       : null}
