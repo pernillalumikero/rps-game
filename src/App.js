@@ -10,6 +10,10 @@ function App() {
 
   const makeComputerChoise = () => {
       setComputerChoise(parseInt(Math.floor((Math.random() * 3) + 1)))
+      // console.log(typeof(userChoise))
+      // console.log(typeof(computerChoise))
+      // console.log(userChoise)
+      // console.log(computerChoise)
   }
  
   return (

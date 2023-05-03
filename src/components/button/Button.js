@@ -5,7 +5,7 @@ const Button = ({value, name, setUserChoise, computerChoise }) => {
     const handleClick = (e) => {
         let value = parseInt(e.target.value)
         setUserChoise(value);
-        computerChoise()
+        computerChoise();
     }
 
   return (

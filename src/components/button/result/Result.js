@@ -20,7 +20,7 @@ const Result = ({ computerChoise, userChoise}) => {
   return (
     <div>
     <h2>Datorn valde: {computerChoise} Du valde: {userChoise}</h2>
-    <h3><Logic computerChoise={computerChoise} userChoise={userChoise}/></h3>
+    <h3><Logic user={userChoise} computer={computerChoise}/></h3>
       {/* {computerChoise === userChoise 
       ? <h3>{result}</h3>
       : (computerChoise === 2 && userChoise === 3)
