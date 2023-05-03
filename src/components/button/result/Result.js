@@ -23,16 +23,29 @@ const Result = ({ computerChoice, userChoice}) => {
   } 
 
   return (
-    <div>
-    <h2>Datorn valde: <img src={computerImgs[compIndex]} alt={generateAlt(compIndex)}/> Du valde: <img src={userImgs[userIndex]} alt={generateAlt(userIndex)}/> </h2>
-    <div name="result-text"><Logic user={userChoice} computer={computerChoice}/></div>
-      {/* {computerChoice === userChoice 
-      ? <h3>{result}</h3>
-      : (computerChoice === 2 && userChoice === 3)
-      || (computerChoice === 3 && userChoice === 1) 
-      || (computerChoice === 3 && userChoice === 2)
-      ? <h3>Du har vunnit!</h3>
-      : <h3>Du har förlorat</h3>} */}
+    <div name="main-wrapper">
+      <div className='wrapper'>
+        <div>
+          <h2>Datorn valde: </h2>
+          <div className='img-container'>
+            <img src={computerImgs[compIndex]} alt={generateAlt(compIndex)}/>
+          </div>
+        </div>
+        <div>
+          <h2>Du valde: </h2>
+          <div className='img-container'>
+            <img src={userImgs[userIndex]} alt={generateAlt(userIndex)}/>
+          </div>
+        </div>
+      </div>
+        <div name="result-text"><Logic user={userChoice} computer={computerChoice}/></div>
+          {/* {computerChoice === userChoice 
+          ? <h3>{result}</h3>
+          : (computerChoice === 2 && userChoice === 3)
+          || (computerChoice === 3 && userChoice === 1) 
+          || (computerChoice === 3 && userChoice === 2)
+          ? <h3>Du har vunnit!</h3>
+          : <h3>Du har förlorat</h3>} */}
     </div>
   )
 }
