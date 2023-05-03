@@ -44,9 +44,11 @@ const Logic = ({user, computer}) => {
 
   }  
   return (
-    <>
+    <h3>
       {compareChoices(user, computer)}
-    </>
+    </h3>
+      
+    
   )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Button = ({value, name, setUserChoise, computerChoise }) => {
+const Button = ({value, name, setUserChoice, computerChoice }) => {
 
     const handleClick = (e) => {
         let value = parseInt(e.target.value)
-        setUserChoise(value);
-        computerChoise();
+        setUserChoice(value);
+        computerChoice();
     }
 
   return (

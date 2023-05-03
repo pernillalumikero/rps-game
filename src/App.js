@@ -5,20 +5,20 @@ import { useState } from 'react';
 
 function App() {
 
-  const [userChoise, setUserChoise] = useState(0)
-  const [computerChoise, setComputerChoise] = useState(0);
+  const [userChoice, setUserChoice] = useState(0)
+  const [computerChoice, setComputerChoice] = useState(0);
 
-  const makeComputerChoise = () => {
-      setComputerChoise(parseInt(Math.floor((Math.random() * 3) + 1)))
+  const makeComputerChoice = () => {
+      setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
 
   }
  
   return (
     <div className="App">
       <h1>ROCK PAPER SCISSOR</h1>
-      <Button name="Sax" value={1} setUserChoise={setUserChoise} computerChoise={makeComputerChoise} /><Button name="Sten" value={2} setUserChoise={setUserChoise} computerChoise={makeComputerChoise}/><Button name="Papper" setUserChoise={setUserChoise} value={3} computerChoise={makeComputerChoise}/>
-      {userChoise !== 0 
-      ? <Result userChoise={userChoise} computerChoise={computerChoise} /> 
+      <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} /><Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/><Button name="Papper" setUserChoice={setUserChoice} value={3} computerChoice={makeComputerChoice}/>
+      {userChoice !== 0 
+      ? <Result userChoice={userChoice} computerChoice={computerChoice} /> 
       : null}
       
     </div>

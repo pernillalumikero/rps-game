@@ -1,8 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Should be hidden if NOT clicked', () => {
   render(<App />);
-  const linkElement = screen.getByText(/ROCK/i);
-  expect(linkElement).toBeInTheDocument();
+  const result = screen.queryByRole("heading", {level: 2})
+
+  expect(result).not.toBeInTheDocument();
+});
+
+test('Should be shown if clicked', () => {
+
+
+  render(<App />);
+  const button = screen.getByRole("button", {name: "Sax"})
+  fireEvent.click(button)
+  const result = screen.queryByRole("heading", {level: 2})
+
+
+ 
+  expect(result).toBeInTheDocument();
 });
