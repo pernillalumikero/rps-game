@@ -1,15 +1,30 @@
 .App {
   text-align: center;
+  border: 1px solid black;
+  margin: 10vh 20%;
+  min-height: 500px;
+}
+
+img {
+  height: 100%;
+  width:inherit;
 }
 
 button {
   margin: 10px;
   font-size: 16px;
   padding: 5px 15px;
-  background-color: white;
+  background-color: rgb(86, 226, 239);
   border-radius: 5px;
-  box-shadow: 4,4,4,4,#282c34;
   cursor: pointer;
+}
+
+button:first-of-type {
+  background-color: rgb(255, 196, 228);
+}
+
+button:last-of-type {
+  background-color: rgb(182, 214, 40);
 }
 
 .wrapper {
