@@ -1,16 +1,42 @@
 .App {
   text-align: center;
+  border: 1px solid black;
+  margin: 10vh 20%;
+  min-height: 500px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  height: 100%;
+  width:inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  margin: 10px;
+  font-size: 16px;
+  padding: 5px 15px;
+  background-color: rgb(86, 226, 239);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:first-of-type {
+  background-color: rgb(255, 196, 228);
+}
+
+button:last-of-type {
+  background-color: rgb(182, 214, 40);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.img-container {
+  height: 200px;
+  width: 200px;
+  background-color: beige;
 }
 
 .App-header {

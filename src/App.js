@@ -16,8 +16,8 @@ function App() {
     <div className="App">
       <h1>Sten-Sax-Påse</h1>
       <p>Gör ditt val:</p>
-      <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} />
       <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
+      <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} />
       <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
       {userChoice !== 0 
       ? <Result userChoice={userChoice} computerChoice={computerChoice} /> 
