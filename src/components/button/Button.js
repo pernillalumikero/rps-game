@@ -1,12 +1,11 @@
 import React from 'react'
 
-const Button = ({value, name, setUserChoice, computerChoice, setHistory, history }) => {
+const Button = ({ value, name, setUserChoice, computerChoice }) => {
 
     const handleClick = (e) => {
         let value = parseInt(e.target.value)
         setUserChoice(value);
         computerChoice();
-        setHistory(...history, {historyItem: "blää"})
     }
 
   return (

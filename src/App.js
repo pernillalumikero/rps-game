@@ -1,17 +1,32 @@
 import Button from './components/button/Button';
 import Result from './components/button/result/Result';
-import History from './components/history/History';
+// import History from './components/history/History';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
   const [userChoice, setUserChoice] = useState(0)
   const [computerChoice, setComputerChoice] = useState(0);
-  const [history, setHistory] = useState([
-    {historyItem: "item"},
-    {historyItem: "aasd"}
-  ])
+  const [history, setHistory] = useState([])
+  
+  const storeHistory = () => {
+
+    let newHistory = [[`Gunnar (${userChoice})`, ` Datorn (${computerChoice})`], ...history ]
+
+    if(history.length < 10) {
+    setHistory(newHistory)
+
+    } else {
+      newHistory.pop()
+      setHistory(newHistory)
+    }
+  }
+
+  useEffect(() =>{
+    storeHistory()
+  }, [computerChoice])
+
 
   const makeComputerChoice = () => {
       setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
@@ -24,14 +39,17 @@ function App() {
         <p>Gör ditt val:</p>
         <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
         <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} />
-        <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} setHistory={setHistory} history={history}/>
+        <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
         {userChoice !== 0 
-        ? <Result userChoice={userChoice} computerChoice={computerChoice} /> 
+        ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory} /> 
         : null}
         
       </div>
       <div>
-        <History history={history} />
+        <h2>Historik</h2>
+        <ol>{history.map(item => <li key={item.index}>{item}</li>
+        )}</ol>
+        {/* <History history={history} /> */}
       </div>
     </>
   );

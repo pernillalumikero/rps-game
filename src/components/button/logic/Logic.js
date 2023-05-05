@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-const Logic = ({user, computer}) => {
+const Logic = ({user, computer, storeHistory}) => {
 
   const compareChoices = (user2, computer2) => {
 
@@ -18,7 +18,6 @@ const Logic = ({user, computer}) => {
     } else {
       result = "Du har förlorat!"
     }
-    // setHistory()
 
     return result;
 
