@@ -2,7 +2,7 @@ import Button from './components/button/Button';
 import Result from './components/button/result/Result';
 // import History from './components/history/History';
 import './App.css';
-import { startTransition, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
 
@@ -11,28 +11,9 @@ function App() {
   const [history, setHistory] = useState([])
   const [playerOne, setPlayerOne] = useState("")
   const [playerTwo, setPlayerTwo] = useState("")
-  // const [players, setPlayers] = useState({
-  //   player1: '',
-  //   player2: ''
-  // })
   const [gameMode, setGameMode] = useState()
   const [start, setStart] = useState(false)
   
-
-  // const handleChange = e => {
-  //   const field = e.target.name
-  //   const value = e.target.value
-
-  //   // LEFT TO FIX! Update of players by setPlayers!
-
-  //   setPlayers({field:value})
-  // }
-
-  const handleClick = (e) => {
-    e.preventDefault();
-   
-  }
-
 
   const makeComputerChoice = () => {
       setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
@@ -49,12 +30,6 @@ function App() {
       setHistory([[`${playerOne} (${userChoice})`, ` ${playerTwo} (${computerChoice})`], ...history.splice(0,9)]) 
     }
 
-
-    // if(userChoice === 0 || history.length > 9) {
-    //   newHistory.pop()
-    // }
-    
-    // setHistory()
   }
  
   return (
@@ -71,14 +46,14 @@ function App() {
             <label htmlFor='multi'>Multiplayer</label>
           </>
         : gameMode === "Singleplayer" 
-          ? <input type='text' placeholder='Enter name..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}></input>
+          ?<> 
+            <input type='text' placeholder='Enter name..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}></input>
+            <button onClick={ () => setStart(true)}>Starta</button>
+          </>
           : <>
-              {/* <form onSubmit={() => handleSubmit()}> */}
-                <input required type='text' placeholder='Enter player 1..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}  ></input>
-                <input required type='text' placeholder='Enter player 2..' name='player2' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}  ></input>
-                {/* <input type='submit' value='Submit' /> */}
-              {/* </form> */}
-              <button onClick={setStart(true)}>Starta</button>
+              <input required type='text' placeholder='Enter player 1..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}  ></input>
+              <input required type='text' placeholder='Enter player 2..' name='player2' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}  ></input>
+              <button onClick={() => setStart(true)}>Starta</button>
             </>
           
       }
