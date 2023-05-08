@@ -9,25 +9,27 @@ function App() {
   const [userChoice, setUserChoice] = useState(0)
   const [computerChoice, setComputerChoice] = useState(0);
   const [history, setHistory] = useState([])
-  const [players, setPlayers] = useState({
-    player1: '',
-    player2: ''
-  })
+  const [playerOne, setPlayerOne] = useState("")
+  const [playerTwo, setPlayerTwo] = useState("")
+  // const [players, setPlayers] = useState({
+  //   player1: '',
+  //   player2: ''
+  // })
   const [gameMode, setGameMode] = useState()
   
 
-  const handleChange = e => {
-    const field = e.target.name
-    const value = e.target.value
+  // const handleChange = e => {
+  //   const field = e.target.name
+  //   const value = e.target.value
 
-    // LEFT TO FIX! Update of players by setPlayers!
+  //   // LEFT TO FIX! Update of players by setPlayers!
 
-    setPlayers({field:value})
-  }
+  //   setPlayers({field:value})
+  // }
 
-  const handleSubmit = () => {
-    // e.preventDefault();
-    console.log(players.player1 + " + " + players.player2)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(playerOne + " + " + playerTwo)
   }
 
 
@@ -38,13 +40,20 @@ function App() {
   // removed useEffect and passed storeHistory to Button, it now runs and updates on every click
   const storeHistory = () => {
 
-    let newHistory = [[`Gunnar (${userChoice})`, ` Datorn (${computerChoice})`], ...history ]
 
-    if(userChoice === 0 || history.length > 9) {
-      newHistory.pop()
+    if(gameMode === "Singleplayer") {
+
+      setHistory([[`${playerOne} (${userChoice})`, ` Datorn (${computerChoice})`], ...history.splice(0,9)])
+    } else {
+      setHistory([[`${playerOne} (${userChoice})`, ` ${playerTwo} (${computerChoice})`], ...history.splice(0,9)]) 
     }
+
+
+    // if(userChoice === 0 || history.length > 9) {
+    //   newHistory.pop()
+    // }
     
-    setHistory(newHistory)
+    // setHistory()
   }
  
   return (
@@ -61,11 +70,11 @@ function App() {
             <label htmlFor='multi'>Multiplayer</label>
           </>
         : gameMode === "Singleplayer" 
-          ? <input type='text' placeholder='Enter name..' name='player1' value={players.player1} onChange={handleChange}></input>
+          ? <input type='text' placeholder='Enter name..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}></input>
           : <>
               <form onSubmit={() => handleSubmit()}>
-                <input required type='text' placeholder='Enter player 1..' name='player1' value={players.player1} onChange={handleChange}  ></input>
-                <input required type='text' placeholder='Enter player 2..' name='player2' value={players.player2} onChange={handleChange}  ></input>
+                <input required type='text' placeholder='Enter player 1..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}  ></input>
+                <input required type='text' placeholder='Enter player 2..' name='player2' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}  ></input>
                 <input type='submit' value='Submit' />
               </form>
             </>
@@ -74,12 +83,16 @@ function App() {
      
       <div className="App">
         <h1>Sten-Sax-Påse</h1>
+        <span>
+          <h3>{playerOne}</h3>
+          <h3>{playerTwo}</h3>
+        </span>
         <p>Gör ditt val:</p>
         <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         {userChoice !== 0 
-        ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory} /> 
+        ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory}  /> 
         : null}
         
       </div>
