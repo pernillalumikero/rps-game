@@ -38,7 +38,7 @@ function App() {
 
      <>
      {console.log(gameMode)}
-      {gameMode == null && start == false 
+      {gameMode == null && start === false 
         ? <>
             <input type='radio' id='single' name='game-mode' onClick={() => setGameMode('Singleplayer')} />
             <label htmlFor='single'>Singleplayer</label>
@@ -57,7 +57,7 @@ function App() {
             </>
           
       }
-     {start == true
+     {start === true
      ? <>
       <div className="App">
         <h1>Sten-Sax-Påse</h1>

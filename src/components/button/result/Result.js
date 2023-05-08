@@ -57,7 +57,7 @@ const Result = ({ computerChoice, userChoice, storeHistory, playerOne, playerTwo
 
             }
       </div>
-        <div name="result-text"><Logic user={userChoice} computer={computerChoice} storeHistory={storeHistory}/></div>
+        <div name="result-text"><Logic user={userChoice} computer={computerChoice} playerOne={playerOne}/></div>
     </div>
   )
 }
