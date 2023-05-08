@@ -1,7 +1,7 @@
 import React from 'react'
 import Logic from '../logic/Logic'
 
-const Result = ({ computerChoice, userChoice, storeHistory}) => {
+const Result = ({ computerChoice, userChoice, storeHistory, playerOne, playerTwo, gameMode}) => {
 
   let userImgs = ['https://images.unsplash.com/photo-1614032686099-e648d6dea9b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80', 'https://images.unsplash.com/photo-1614032686163-bdc24c13d0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80', 'https://images.unsplash.com/photo-1614032686158-b880f7e82c18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80']
   let userIndex = userChoice - 1;
@@ -24,18 +24,38 @@ const Result = ({ computerChoice, userChoice, storeHistory}) => {
   return (
     <div>
       <div className='wrapper'>
-        <div>
-          <h2>Datorn valde: </h2>
-          <div className='img-container'>
-            <img src={computerImgs[compIndex]} alt={generateAlt(compIndex)}/>
-          </div>
-        </div>
-        <div>
-          <h2>Du valde: </h2>
-          <div className='img-container'>
-            <img src={userImgs[userIndex]} alt={generateAlt(userIndex)}/>
-          </div>
-        </div>
+      
+          {gameMode === "Singleplayer"
+            ? <> 
+                <div>
+                  <h2>Datorn valde: </h2>
+                    <div className='img-container'>
+                      <img src={computerImgs[compIndex]} alt={generateAlt(compIndex)}/>
+                    </div>
+                </div>
+              <div>
+                <h2>{playerOne} valde: </h2>
+                  <div className='img-container'>
+                    <img src={userImgs[userIndex]} alt={generateAlt(userIndex)}/>
+                  </div>
+              </div>
+            </>
+            : <> 
+                <div>
+                  <h2>{playerOne} valde: </h2>
+                    <div className='img-container'>
+                      <img src={computerImgs[compIndex]} alt={generateAlt(compIndex)}/>
+                    </div>
+                </div>
+              <div>
+                <h2>{playerTwo} valde: </h2>
+                  <div className='img-container'>
+                    <img src={userImgs[userIndex]} alt={generateAlt(userIndex)}/>
+                  </div>
+              </div>
+            </>
+
+            }
       </div>
         <div name="result-text"><Logic user={userChoice} computer={computerChoice} storeHistory={storeHistory}/></div>
     </div>

@@ -2,7 +2,7 @@ import Button from './components/button/Button';
 import Result from './components/button/result/Result';
 // import History from './components/history/History';
 import './App.css';
-import { useState } from 'react';
+import { startTransition, useState } from 'react';
 
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
   //   player2: ''
   // })
   const [gameMode, setGameMode] = useState()
+  const [start, setStart] = useState(false)
   
 
   // const handleChange = e => {
@@ -27,9 +28,9 @@ function App() {
   //   setPlayers({field:value})
   // }
 
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    console.log(playerOne + " + " + playerTwo)
+   
   }
 
 
@@ -62,7 +63,7 @@ function App() {
 
      <>
      {console.log(gameMode)}
-      {gameMode == null 
+      {gameMode == null && start == false 
         ? <>
             <input type='radio' id='single' name='game-mode' onClick={() => setGameMode('Singleplayer')} />
             <label htmlFor='single'>Singleplayer</label>
@@ -72,15 +73,17 @@ function App() {
         : gameMode === "Singleplayer" 
           ? <input type='text' placeholder='Enter name..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}></input>
           : <>
-              <form onSubmit={() => handleSubmit()}>
+              {/* <form onSubmit={() => handleSubmit()}> */}
                 <input required type='text' placeholder='Enter player 1..' name='player1' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)}  ></input>
                 <input required type='text' placeholder='Enter player 2..' name='player2' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)}  ></input>
-                <input type='submit' value='Submit' />
-              </form>
+                {/* <input type='submit' value='Submit' /> */}
+              {/* </form> */}
+              <button onClick={setStart(true)}>Starta</button>
             </>
           
       }
-     
+     {start == true
+     ? <>
       <div className="App">
         <h1>Sten-Sax-Påse</h1>
         <span>
@@ -92,7 +95,7 @@ function App() {
         <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         {userChoice !== 0 
-        ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory}  /> 
+        ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory} playerOne= {playerOne} playerTwo = {playerTwo} gameMode={gameMode}  /> 
         : null}
         
       </div>
@@ -100,8 +103,11 @@ function App() {
         <h2>Historik</h2>
         <ul>{history.map((item, index)=> <li key={index}>{item}</li>
         )}</ul>
-        {/* <History history={history} /> */}
       </div>
+     </>
+     : null
+
+     }
     </>
   );
 }
