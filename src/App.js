@@ -2,7 +2,7 @@ import Button from './components/button/Button';
 import Result from './components/button/result/Result';
 // import History from './components/history/History';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
 
@@ -15,22 +15,6 @@ function App() {
   })
   const [gameMode, setGameMode] = useState()
   
-  const storeHistory = () => {
-
-    let newHistory = [[`Gunnar (${userChoice})`, ` Datorn (${computerChoice})`], ...history ]
-
-    if(history.length < 10) {
-    setHistory(newHistory)
-
-    } else {
-      newHistory.pop()
-      setHistory(newHistory)
-    }
-  }
-
-  useEffect(() =>{
-    storeHistory()
-  }, [computerChoice])
 
   const handleChange = e => {
     const field = e.target.name
@@ -49,6 +33,18 @@ function App() {
 
   const makeComputerChoice = () => {
       setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
+  }
+  
+  // removed useEffect and passed storeHistory to Button, it now runs and updates on every click
+  const storeHistory = () => {
+
+    let newHistory = [[`Gunnar (${userChoice})`, ` Datorn (${computerChoice})`], ...history ]
+
+    if(userChoice === 0 || history.length > 9) {
+      newHistory.pop()
+    }
+    
+    setHistory(newHistory)
   }
  
   return (
@@ -79,18 +75,18 @@ function App() {
       <div className="App">
         <h1>Sten-Sax-Påse</h1>
         <p>Gör ditt val:</p>
-        <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
-        <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} />
-        <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice}/>
+        <Button name="Sten" value={2} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
+        <Button name="Sax" value={1} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
+        <Button name="Påse" value={3} setUserChoice={setUserChoice} computerChoice={makeComputerChoice} storeHistory={storeHistory}/>
         {userChoice !== 0 
         ? <Result userChoice={userChoice} computerChoice={computerChoice} storeHistory={storeHistory} /> 
         : null}
         
       </div>
-      <div>
+      <div className='App'>
         <h2>Historik</h2>
-        <ol>{history.map((item, index)=> <li key={index}>{item}</li>
-        )}</ol>
+        <ul>{history.map((item, index)=> <li key={index}>{item}</li>
+        )}</ul>
         {/* <History history={history} /> */}
       </div>
     </>
