@@ -1,5 +1,5 @@
 import Button from "./components/button/Button";
-import Result from "./components/button/result/Result";
+import Result from "./components/result/Result";
 // import History from './components/history/History';
 import "./App.css";
 import { useState } from "react";
@@ -17,6 +17,7 @@ function App() {
   const [playerTwo, setPlayerTwo] = useState("");
   const [gameMode, setGameMode] = useState();
   const [start, setStart] = useState(false);
+  const [winner, setWinner] = useState()
 
   const makeComputerChoice = () => {
     setComputerChoice(parseInt(Math.floor(Math.random() * 3 + 1)));
@@ -46,6 +47,7 @@ function App() {
         ...history.splice(0, 9),
       ]);
     }
+    
   };
 
   return (
@@ -141,6 +143,7 @@ function App() {
                 playerOne={playerOne}
                 playerTwo={playerTwo}
                 gameMode={gameMode}
+                setWinner={setWinner}
               />
             ) : null}
           </div>
@@ -149,10 +152,27 @@ function App() {
             <ul>
               {history.map((item, index) => (
                 <li key={index}>
-                  {item.playerOne}
-                  {item.userChoice}
-                  {item.playerTwo}
-                  {item.computerChoice}
+                  {item.playerOne === winner 
+                    ? <>
+                        <b>{item.playerOne}</b>: 
+                        {item.userChoice}
+                        {item.playerTwo}: 
+                        {item.computerChoice}
+                      </>
+                    : item.playerTwo === winner 
+                      ? <>
+                          {item.playerOne}
+                          {item.userChoice}
+                          <b>{item.playerTwo}</b>
+                          {item.computerChoice}
+                        </>
+                      :  <>
+                          {item.playerOne}
+                          {item.userChoice}
+                          {item.playerTwo}
+                          {item.computerChoice}
+                      </>
+                  }
                 </li>
               ))}
             </ul>

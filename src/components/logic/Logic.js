@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Logic = ({ userChoice, computerChoice, playerOne }) => {
+const Logic = ({ userChoice, computerChoice, playerOne, setWinner }) => {
   const [userScore, setUserScore] = useState(0);
   const [compScore, setCompScore] = useState(0);
   let result = "";
 
   const compareChoices = (player1, player2) => {
     if (player2 === player1) {
+      setWinner('')
       result = "Oavgjort!";
     } else if (
       (player2 === 2 && player1 === 3) ||
@@ -16,6 +17,7 @@ const Logic = ({ userChoice, computerChoice, playerOne }) => {
     ) {
       result = "Du har vunnit!";
     } else {
+      
       result = "Du har förlorat!";
     }
 
@@ -25,8 +27,10 @@ const Logic = ({ userChoice, computerChoice, playerOne }) => {
   useEffect(() => {
     const scoreKeeper = () => {
       if (result === "Du har vunnit!") {
+        setWinner(playerOne)
         setUserScore(userScore + 1);
       } else if (result === "Du har förlorat!") {
+        setWinner("Datorn")
         setCompScore(compScore + 1);
       }
     };
