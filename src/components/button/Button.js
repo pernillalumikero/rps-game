@@ -1,17 +1,24 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({ value, name, setUserChoice, computerChoice, storeHistory }) => {
-
-    const handleClick = (e) => {
-        let value = parseInt(e.target.value)
-        setUserChoice(value);
-        computerChoice();
-        storeHistory();
-    }
+const Button = ({
+  value,
+  name,
+  setUserChoice,
+  computerChoice,
+  storeHistory,
+}) => {
+  const handleClick = (e) => {
+    let value = parseInt(e.target.value);
+    setUserChoice(value);
+    computerChoice();
+    storeHistory();
+  };
 
   return (
-    <button value={value} onClick={handleClick}>{name}</button>
-  )
-}
+    <button value={value} onClick={handleClick}>
+      {name}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
