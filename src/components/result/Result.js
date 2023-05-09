@@ -81,6 +81,7 @@ const Result = ({
           userChoice={userChoice}
           computerChoice={computerChoice}
           playerOne={playerOne}
+          playerTwo={playerTwo}
           setWinner={setWinner}
         />
       </div>

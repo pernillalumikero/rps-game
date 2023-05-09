@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [userChoice, setUserChoice] = useState(0);
+  const [user2Choice, setUser2Choice] = useState();
   const [computerChoice, setComputerChoice] = useState(0);
   const [history, setHistory] = useState([{
         playerOne: "",
@@ -18,10 +19,17 @@ function App() {
   const [gameMode, setGameMode] = useState();
   const [start, setStart] = useState(false);
   const [winner, setWinner] = useState()
+  const [currentPlayer, setCurrentPlayer] = useState(playerOne)
+
+
 
   const makeComputerChoice = () => {
     setComputerChoice(parseInt(Math.floor(Math.random() * 3 + 1)));
   };
+
+  const switchPlayer = () => {
+    setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne)
+  }
 
   // `${playerOne} (${userChoice})`, ` Datorn (${computerChoice})`
   // removed useEffect and passed storeHistory to Button, it now runs and updates on every click
@@ -55,7 +63,6 @@ function App() {
     // input for name by player(s)
 
     <>
-      {console.log(gameMode)}
       {gameMode == null && start === false ? (
         <>
           <input
@@ -102,16 +109,18 @@ function App() {
             value={playerTwo}
             onChange={(e) => setPlayerTwo(e.target.value)}
           ></input>
-          <button onClick={() => setStart(true)}>Starta</button>
+          <button onClick={() => (setStart(true), switchPlayer())}>Starta</button>
         </>
       )}
-      {start === true ? (
+
+      {start === true && gameMode === "Singleplayer" ? (
         <>
           <div className="App">
             <h1>Sten-Sax-Påse</h1>
             <span>
               <h3>{playerOne}</h3>
               <h3>{playerTwo}</h3>
+              <h3>{currentPlayer}</h3>
             </span>
             <p>Gör ditt val:</p>
             <Button
@@ -119,21 +128,106 @@ function App() {
               value={2}
               setUserChoice={setUserChoice}
               computerChoice={makeComputerChoice}
+              switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              gameMode={gameMode}
             />
             <Button
               name="Sax"
               value={1}
               setUserChoice={setUserChoice}
               computerChoice={makeComputerChoice}
+              switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              gameMode={gameMode}
             />
             <Button
               name="Påse"
               value={3}
               setUserChoice={setUserChoice}
               computerChoice={makeComputerChoice}
+              switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              gameMode={gameMode}
+            />
+            {userChoice !== 0 ? (
+              <Result
+                userChoice={userChoice}
+                computerChoice={computerChoice}
+                storeHistory={storeHistory}
+                playerOne={playerOne}
+                playerTwo={history.playerTwo}
+                gameMode={gameMode}
+                setWinner={setWinner}
+              />
+            ) : null}
+          </div>
+          <div className="App">
+            <h2>Historik</h2>
+            <ul>
+              {history.map((item, index) => (
+                <li key={index}>
+                  {item.playerOne === winner 
+                    ? <>
+                        <b>{item.playerOne}</b>: 
+                        {item.userChoice}
+                        {item.playerTwo}: 
+                        {item.computerChoice}
+                      </>
+                    : item.playerTwo === winner 
+                      ? <>
+                          {item.playerOne}
+                          {item.userChoice}
+                          <b>{item.playerTwo}</b>
+                          {item.computerChoice}
+                        </>
+                      :  <>
+                          {item.playerOne}
+                          {item.userChoice}
+                          {item.playerTwo}
+                          {item.computerChoice}
+                      </>
+                  }
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      ) : start === true && gameMode === "Multiplayer" ? 
+      <>
+          <div className="App">
+            <h1>Sten-Sax-Påse</h1>
+            <span>
+              <h3>{playerOne}</h3>
+              <h3>{playerTwo}</h3>
+            </span>
+            <p>Gör ditt val {currentPlayer}:</p>
+            <Button
+              name="Sten"
+              value={2}
+              setUserChoice={setUserChoice}
+              computerChoice={computerChoice}
+              switchPlayer={switchPlayer}
+              storeHistory={storeHistory}
+              gameMode={gameMode}
+            />
+            <Button
+              name="Sax"
+              value={1}
+              setUserChoice={setUserChoice}
+              computerChoice={computerChoice}
+              switchPlayer={switchPlayer}
+              storeHistory={storeHistory}
+              gameMode={gameMode}
+            />
+            <Button
+              name="Påse"
+              value={3}
+              setUserChoice={setUserChoice}
+              computerChoice={computerChoice}
+              switchPlayer={switchPlayer}
+              storeHistory={storeHistory}
+              gameMode={gameMode}
             />
             {userChoice !== 0 ? (
               <Result
@@ -178,7 +272,7 @@ function App() {
             </ul>
           </div>
         </>
-      ) : null}
+      : null}
     </>
   );
 }

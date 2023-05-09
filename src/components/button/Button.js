@@ -5,12 +5,18 @@ const Button = ({
   name,
   setUserChoice,
   computerChoice,
+  switchPlayer,
   storeHistory,
+  gameMode
 }) => {
   const handleClick = (e) => {
     let value = parseInt(e.target.value);
     setUserChoice(value);
-    computerChoice();
+    if(gameMode === "Singleplayer"){
+      computerChoice();
+    } else {
+      switchPlayer()
+    }
     storeHistory();
   };
 

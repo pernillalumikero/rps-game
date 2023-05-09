@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Logic = ({ userChoice, computerChoice, playerOne, setWinner }) => {
+const Logic = ({ userChoice, computerChoice, playerOne, playerTwo, setWinner }) => {
   const [userScore, setUserScore] = useState(0);
   const [compScore, setCompScore] = useState(0);
   let result = "";
@@ -45,7 +45,7 @@ const Logic = ({ userChoice, computerChoice, playerOne, setWinner }) => {
     <>
       <h3>{compareChoices(userChoice, computerChoice)}</h3>
       <p>
-        Ställningen är {playerOne}: {userScore} Datorn: {compScore}
+        Ställningen är {playerOne}: {userScore} {playerTwo}: {compScore}
       </p>
     </>
   );
