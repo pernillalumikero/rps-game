@@ -1,7 +1,7 @@
 import React from 'react'
 import Logic from '../logic/Logic'
 
-const Result = ({ computerChoice, userChoice, storeHistory, playerOne, playerTwo, gameMode}) => {
+const Result = ({ computerChoice, userChoice, playerOne, playerTwo, gameMode}) => {
 
   let userImgs = ['https://images.unsplash.com/photo-1614032686099-e648d6dea9b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80', 'https://images.unsplash.com/photo-1614032686163-bdc24c13d0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80', 'https://images.unsplash.com/photo-1614032686158-b880f7e82c18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80']
   let userIndex = userChoice - 1;
@@ -57,7 +57,7 @@ const Result = ({ computerChoice, userChoice, storeHistory, playerOne, playerTwo
 
             }
       </div>
-        <div name="result-text"><Logic user={userChoice} computer={computerChoice} playerOne={playerOne}/></div>
+        <div name="result-text"><Logic userChoice={userChoice} computerChoice={computerChoice} playerOne={playerOne}/></div>
     </div>
   )
 }

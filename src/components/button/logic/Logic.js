@@ -1,35 +1,45 @@
 import React from "react";
 import { useState, useEffect} from "react";
 
-const Logic = ({ user, computer, playerOne }) => {
+const Logic = ({ userChoice, computerChoice, playerOne }) => {
   const [userScore, setUserScore] = useState(0);
   const [compScore, setCompScore] = useState(0);
   let result = '';
 
+
+  const compareChoices = (player1, player2) => {
+
+    if (player2 === player1) {
+      result = 'Oavgjort!';
+    } else if ((player2 === 2 && player1 === 3) || (player2 === 3 && player1 === 1) || (player2 === 1 && player1 === 2)) {
+      result = 'Du har vunnit!';
+    } else {
+      result = 'Du har förlorat!';
+    }
+
+    return result;
+  };
+
   useEffect(() => {
-    const compareChoices = (user2, computer2) => {
 
-      if (computer2 === user2) {
-        result = 'Oavgjort!';
-      } else if ((computer2 === 2 && user2 === 3) || (computer2 === 3 && user2 === 1) || (computer2 === 1 && user2 === 2)) {
+    const scoreKeeper = () => {
+
+     if (result === 'Du har vunnit!') {
         setUserScore(userScore + 1);
-        result = 'Du har vunnit!';
-      } else {
+      } else if (result === 'Du har förlorat!'){
         setCompScore(compScore + 1);
-        result = 'Du har förlorat!';
       }
+    }
+    scoreKeeper()
+  },[userChoice, computerChoice]);
 
-      return result;
-    };
-
-    compareChoices(user, computer);
-  }, [user, computer]);
+  compareChoices(userChoice, computerChoice);
 
 //need to put score and result in different functions for easier displaying and testing 
 
   return (
     <>
-      <h3>{result}</h3>
+      <h3>{compareChoices(userChoice, computerChoice)}</h3>
       <p>Ställningen är {playerOne}: {userScore} Datorn: {compScore}</p>
     </>
   );

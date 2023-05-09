@@ -19,15 +19,24 @@ function App() {
       setComputerChoice(parseInt(Math.floor((Math.random() * 3) + 1)))
   }
   
+  // `${playerOne} (${userChoice})`, ` Datorn (${computerChoice})`
   // removed useEffect and passed storeHistory to Button, it now runs and updates on every click
   const storeHistory = () => {
 
-
     if(gameMode === "Singleplayer") {
-
-      setHistory([[`${playerOne} (${userChoice})`, ` Datorn (${computerChoice})`], ...history.splice(0,9)])
+      setHistory([
+        {playerOne: playerOne,
+        playerTwo: "Dator Hans",
+        userChoice: userChoice,
+        computerChoice: computerChoice
+        }, ...history.splice(0,9)])
     } else {
-      setHistory([[`${playerOne} (${userChoice})`, ` ${playerTwo} (${computerChoice})`], ...history.splice(0,9)]) 
+      setHistory([
+        {playerOne: playerOne,
+        playerTwo: playerTwo,
+        userChoice: userChoice,
+        computerChoice: computerChoice
+        }, ...history.splice(0,9)])
     }
 
   }
@@ -76,7 +85,7 @@ function App() {
       </div>
       <div className='App'>
         <h2>Historik</h2>
-        <ul>{history.map((item, index)=> <li key={index}>{item}</li>
+        <ul>{history.map((item, index)=> <li key={index}>{item.playerOne}{item.userChoice}{item.playerTwo}{item.computerChoice}</li>
         )}</ul>
       </div>
      </>
