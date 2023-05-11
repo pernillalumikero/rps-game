@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [userChoice, setUserChoice] = useState(0);
-  const [user2Choice, setUser2Choice] = useState();
+  const [user2Choice, setUser2Choice] = useState(0);
   const [computerChoice, setComputerChoice] = useState(0);
   const [history, setHistory] = useState([{
         playerOne: "",
@@ -127,32 +127,39 @@ function App() {
               name="Sten"
               value={2}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={makeComputerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
             <Button
               name="Sax"
               value={1}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={makeComputerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
             <Button
               name="Påse"
               value={3}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={makeComputerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
             {userChoice !== 0 ? (
               <Result
                 userChoice={userChoice}
+                setUser2Choice={setUser2Choice}
                 computerChoice={computerChoice}
                 storeHistory={storeHistory}
                 playerOne={playerOne}
@@ -198,40 +205,51 @@ function App() {
           <div className="App">
             <h1>Sten-Sax-Påse</h1>
             <span>
-              <h3>{playerOne}</h3>
-              <h3>{playerTwo}</h3>
+              <h3>{userChoice}</h3>
+              <h3>{user2Choice}</h3>
+              <h3>{}</h3>
             </span>
             <p>Gör ditt val {currentPlayer}:</p>
             <Button
               name="Sten"
               value={2}
+              playerOne={playerOne}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={computerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
             <Button
               name="Sax"
               value={1}
+              playerOne={playerOne}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={computerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
             <Button
               name="Påse"
               value={3}
+              playerOne={playerOne}
               setUserChoice={setUserChoice}
+              setUser2Choice={setUser2Choice}
               computerChoice={computerChoice}
               switchPlayer={switchPlayer}
               storeHistory={storeHistory}
+              currentPlayer={currentPlayer}
               gameMode={gameMode}
             />
-            {userChoice !== 0 ? (
+            {userChoice && user2Choice !== 0 ? (
               <Result
                 userChoice={userChoice}
+                user2Choice={user2Choice}
                 computerChoice={computerChoice}
                 storeHistory={storeHistory}
                 playerOne={playerOne}

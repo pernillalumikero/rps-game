@@ -3,7 +3,10 @@ import React from "react";
 const Button = ({
   value,
   name,
+  playerOne,
+  currentPlayer,
   setUserChoice,
+  setUser2Choice,
   computerChoice,
   switchPlayer,
   storeHistory,
@@ -11,11 +14,18 @@ const Button = ({
 }) => {
   const handleClick = (e) => {
     let value = parseInt(e.target.value);
-    setUserChoice(value);
+    
     if(gameMode === "Singleplayer"){
       computerChoice();
+      setUserChoice(value);
     } else {
+      if(currentPlayer === playerOne) {
+        setUserChoice(value);
+      } else {
+        setUser2Choice(value)
+      }
       switchPlayer()
+
     }
     storeHistory();
   };
